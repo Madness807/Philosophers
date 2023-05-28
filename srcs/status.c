@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   status.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jo <jo@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 02:04:55 by jo                #+#    #+#             */
-/*   Updated: 2023/04/21 02:07:53 by jo               ###   ########.fr       */
+/*   Created: 2023/05/28 03:08:43 by joterret          #+#    #+#             */
+/*   Updated: 2023/05/28 03:19:52 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo_1.h"
+#include "../include/philo.h"
 
-int main()
+void	ft_eat(void)
 {
-    //instruction
+	write(1, "eat", 3);
+	write(1, "\n", 1);
+}
+
+void	ft_sleep(void)
+{
+	write(1, "sleep", 5);
+	write(1, "\n", 1);
+}
+
+void	ft_think(void)
+{
+	write(1, "think", 5);
+	write(1, "\n", 1);
 }

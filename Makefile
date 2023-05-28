@@ -1,12 +1,15 @@
 #***** Name *****#
 
-NAME			=		philosopher
+NAME			=		philo
 
 #***** Sources / Objs *****#
 
-SRC				=		main.c\
+SRC				=		srcs/main.c\
+						srcs/input.c\
+						utils/utils.c\
+						srcs/status.c\
 
-OBJS			=		obj/$(SRC:.c=.o)
+OBJS			=		$(addprefix obj/, $(SRC:.c=.o))
 
 MAKEFLAGS += --no-print-directory
 
@@ -38,18 +41,14 @@ MSHELL			=		echo "$(GREEN) \t     __  ______    ____  _   __________________\n\
 
 #***** Flags *****#
 
-CC				=		gcc
-CFLAGS			=		-Wall -Wextra -Werror -g
-L				=		$(CFLAGS) -fsanitize=address
+GCC				=		gcc -g
+CFLAGS			=		-g -Wall -Wextra -Werror
+L				=		$(CFLAGS)  -fsanitize=address
 RM				=		rm -f
 
 #***** Compilation *****#
 
-all : lib start logo $(NAME)
-
-lib:
-	@$(MLIBFT) all
-			@$(END_COMP_LIB)
+all : start logo $(NAME)
 
 start:
 			@$(START)
@@ -57,39 +56,29 @@ start:
 logo :
 			@$(MSHELL)	
 
-$(OBJS):	srcs/$(SRC) ./libft/libft.h Makefile
+obj/%.o:	%.c 
+			mkdir -p $(dir $@)
 			@$(CC) $(CFLAGS) -c $< -o $@
-			@$(CHARG_LINE)
 
 $(NAME) :	${OBJS}
 			@$(BS_N)
-			@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} 
 			@$(END_COMP)
 
-l :			${OBJS}
-			${MLIBFT} all
-			${CC} ${L} -o ${NAME} ${OBJS} ${LIBFT}
-			@$(END_COMP)
-
-test: 		all
-			@${CC} ${CFLAGS} ${OBJS}
-			@$(TEST)
-			@./a.out
-			@rm -f ./a.out			
+l :
+			$(GCC) $(L) $(SRC) -o $(NAME)
 
 #***** Clean *****#
 
 clean:
 			@$(S_OBJS)
-			@${RM} ${OBJS}
-			@${MLIBFT} clean
+			@${RM} -r obj
 
 fclean:		clean
 			@$(S_NAME)
 			@${RM} ${NAME}
-			@${MLIBFT} fclean
 			@echo "Succes cleaning"
 
 re:			fclean all
 
-.PHONY:		all clean fclean 
+.PHONY:		all clean fclean
