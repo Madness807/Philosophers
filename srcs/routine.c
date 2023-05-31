@@ -6,8 +6,18 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 04:06:14 by joterret          #+#    #+#             */
-/*   Updated: 2023/05/28 04:06:23 by joterret         ###   ########.fr       */
+/*   Updated: 2023/05/31 04:42:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	*routine(void *arg)
+{
+	arg = (t_head*)arg;
+	
+	ft_eat();
+	sleep(1);
+	ft_think();
+	return (NULL);
+}

@@ -6,8 +6,11 @@ NAME			=		philo
 
 SRC				=		srcs/main.c\
 						srcs/input.c\
+						srcs/init.c\
+						srcs/routine.c\
 						utils/utils.c\
 						srcs/status.c\
+						srcs/free_exit.c\
 
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))
 
