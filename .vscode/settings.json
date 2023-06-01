@@ -1,0 +1,14 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/joterret/Bureau/42/Philosophers",
+            "binaryPath": "/home/joterret/Bureau/42/Philosophers/philo",
+            "binaryArgs": []
+        }
+    ],
+    "files.associations": {
+        "*.excalidraw": "json",
+        "*.excalidrawlib": "json",
+        "philo.h": "c"
+    }
+}

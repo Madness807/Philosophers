@@ -12,17 +12,17 @@
 
 #include "../include/philo.h"
 
-void	ft_eat()
+void	ft_eat(t_head *head)
 {
-	write(1, "eat\n", 4);
+	printf("Le philosphe %i\n est en train de manger", head->philo->id_philo);
 }
 
-void	ft_sleep()
+void	ft_sleep(t_head *head)
 {
-	write(1, "sleep\n", 6);
+	printf("Le philosphe %i\n est en train de dormir", head->philo->id_philo);
 }
 
-void	ft_think()
+void	ft_think(t_head *head)
 {
-	write(1, "think\n", 6);
+	printf("Le philosphe %i\n est en train de penser", head->philo->id_philo);
 }

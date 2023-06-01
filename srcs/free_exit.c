@@ -11,3 +11,12 @@
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+// //TODO - free le tableau de philosophe
+
+// void    free_philo_tab(t_head *head)
+// {
+//     free(head->philo);
+// }
+
+// //TODO - détruire les mutex 

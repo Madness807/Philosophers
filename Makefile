@@ -5,7 +5,6 @@ NAME			=		philo
 #***** Sources / Objs *****#
 
 SRC				=		srcs/main.c\
-						srcs/input.c\
 						srcs/init.c\
 						srcs/routine.c\
 						utils/utils.c\

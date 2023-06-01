@@ -13,59 +13,68 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>
-# include <stdlib.h>
+////////////////////////////////////////////////////////////////////////////////
+// 									Librairies							      //
+////////////////////////////////////////////////////////////////////////////////
+
+# include <string.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <pthread.h>
+# include <stdlib.h>
+# include <limits.h>
 # include <sys/time.h>
 
-//struct
-typedef struct  s_philosopher
+////////////////////////////////////////////////////////////////////////////////
+// 									structs								      //
+////////////////////////////////////////////////////////////////////////////////
+typedef struct s_philosopher
 {
-	int		id_philo;
-	int		time_awake;
-	int		meal_count;
-	int		fork1;
-	int		time_since_last_meal;
-	pthread_t	thread;
+	int				id_philo;
+	int				time_awake;
+	int				meal_count;
+	long int		time_since_last_meal;
+	pthread_mutex_t	*fork_l;
+	pthread_mutex_t	*fork_r;
+	pthread_t		thread;
 
 }t_philosopher;
 
-typedef struct	s_head
+typedef struct s_head
 {
-	int	number_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_spleep;
+	int				number_of_philosophers;
+	int				number_of_times_each_philosopher_must_eat;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	t_philosopher	*philo;
-	
 }t_head;
 
-//initialisation 
-void	init_head(t_head *head);
-void	init_philo_tab(t_head *head);
-void	init_philo(t_head *head);
+////////////////////////////////////////////////////////////////////////////////
+// 							Prototype de fonctions						      //
+////////////////////////////////////////////////////////////////////////////////
 
-//main function
-void	take_rec_args(t_head *input_args, char **argv);
+//		initialisation
+void	init_head(t_head *input_args, char **argv);
+void	init_philo(t_head *head);
+void	init_thread(t_head *head);
+void	init_mutex(t_head *head);
+
+//		State function
+void	ft_eat(t_head *head);
+void	ft_sleep(t_head *head);
+void	ft_think(t_head *head);
+
+//		utils function 
+int		ft_atoi(const char *nptr);
+int		ft_isdigit(int c);
 void	check_if_args_is_digit(char **argv);
 void	check_is_digit(char *num);
 
-//State function
-void	ft_eat();
-void	ft_sleep();
-void	ft_think();
-
-//utils function 
-int		ft_atoi(const char *nptr);
-int		ft_isdigit(int c);
-
-
+// a remplir
 void	*routine(void *arg);
 
-
-
-//exit function 
+//		exit and free function 
+void	free_philo_tab(t_head *head);
 
 #endif
-
