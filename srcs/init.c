@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/05/31 04:49:15 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:09:23 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	init_head(t_head *head, char **argv)
 	head->time_to_die = ft_atoi(argv[2]);
 	head->time_to_eat = ft_atoi(argv[3]);
 	head->time_to_sleep = ft_atoi(argv[4]);
+	head->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+	head->has_died = 0;
 }
 
 void	init_philo(t_head *head)
@@ -34,6 +36,10 @@ void	init_philo(t_head *head)
 		head->philo[i].time_awake = 0;
 		head->philo[i].meal_count = 0;
 		head->philo[i].time_since_last_meal = 0;
+		head->philo[i].head = head;
+		head->philo[i].thread = malloc(sizeof(*(head->philo[i].thread)));
+		if (!head->philo[i].thread)
+			printf("ZOOO");
 		i++;
 	}
 }
@@ -42,13 +48,21 @@ void	init_thread(t_head *head)
 {
 	int	i;
 
+	t_philosopher *curr;
+
 	i = 0;
+	// printf("Number of thread to create : (%d)", head->number_of_philosophers);
+
 	while (i < head->number_of_philosophers)
 	{
-		if (pthread_create(&head->philo[i].thread, NULL, &routine, head) != 0)
-		{
-			printf("Erreur lors de la création du thread pour le philosophe %d\n", i);
-		}
+		curr = head->philo + i;
+		// if (pthread_create(head->philo[i].thread, 0, &routine, ((void *) head->philo + i)))
+		// {
+		// 	printf("Erreur lors de la création du thread pour le philosophe %d\n", i);
+		// 	exit(0);
+		// }
+		pthread_create(head->philo[i].thread, 0, &routine, ((void *) curr));
+		usleep(15);
 		i++;
 	}
 }

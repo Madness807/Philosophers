@@ -3,33 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 04:06:14 by joterret          #+#    #+#             */
-/*   Updated: 2023/05/31 04:42:20 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:10:26 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+#include <unistd.h>
 
 void	*routine(void *arg)
 {
-	t_head	*head;
-	int		i;
-
-	head = (t_head *)arg;
-	i = 0;
-	while (i != head->number_of_philosophers)
+	t_philosopher *curr;
+	t_head *head;
+	
+	curr = (t_philosopher *) arg;
+	head = curr->head;
+	if(curr->id_philo % 2)
+		usleep(200);
+	// while (!head->has_died)
+	while (1)
 	{
-		ft_think(head->philo[i].id_philo);
-		pthread_mutex_lock(head->philo[i].fork_l);
-		pthread_mutex_lock(head->philo[i].fork_r);
-		ft_eat(head->philo->id_philo);
-		pthread_mutex_unlock(head->philo[i].fork_l);
-		pthread_mutex_unlock(head->philo[i].fork_r);
-		ft_sleep(head->philo[i].id_philo);
-		sleep(head->time_to_sleep * 1000);
-		i++;
+		if(curr->meal_count >= head->number_of_times_each_philosopher_must_eat)	
+		{
+			
+			printf(" Philo (%i) Has Eated (%i) for max (%i) \n", curr->id_philo, curr->meal_count, head->number_of_times_each_philosopher_must_eat);
+			break;
+		}
+		ft_eat(curr);
+		printf("in loop : philo id (%i). Has Eated (%i)\n", curr->id_philo, curr->meal_count);
+
+		//pthread_mutex_lock(curr->fork_r);
+		pthread_mutex_lock(curr->fork_l);
+
+		//pthread_mutex_unlock(curr->fork_r);
+		pthread_mutex_unlock(curr->fork_l);
+
+		ft_sleep(curr);
+		usleep(50);
+		ft_think(curr);
 	}
-	return (NULL);
+	return (0);
 }
+

@@ -43,9 +43,9 @@ MSHELL			=		echo "$(GREEN) \t     __  ______    ____  _   __________________\n\
 
 #***** Flags *****#
 
-GCC				=		gcc -g
-CFLAGS			=		-g -Wall -Wextra -Werror
-L				=		$(CFLAGS)  -fsanitize=address
+GCC				=		gcc
+CFLAGS			=		-Wall -Wextra -Werror 
+L				=		$(CFLAGS)  -fsanitize=thread -g3
 RM				=		rm -f
 
 #***** Compilation *****#
@@ -64,7 +64,7 @@ obj/%.o:	%.c
 
 $(NAME) :	${OBJS}
 			@$(BS_N)
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} 
+			${CC} -lpthread ${CFLAGS} -o ${NAME} ${OBJS} 
 			@$(END_COMP)
 
 l :
