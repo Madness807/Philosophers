@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/06 17:09:23 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/06/07 04:34:16 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	init_head(t_head *head, char **argv)
 {
-	head->number_of_philosophers = ft_atoi(argv[1]);
-	head->time_to_die = ft_atoi(argv[2]);
-	head->time_to_eat = ft_atoi(argv[3]);
-	head->time_to_sleep = ft_atoi(argv[4]);
-	head->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+	head->number_of_philosophers = ft_atol(argv[1]);
+	head->time_to_die = ft_atol(argv[2]);
+	head->time_to_eat = ft_atol(argv[3]);
+	head->time_to_sleep = ft_atol(argv[4]);
+	head->number_of_times_each_philosopher_must_eat = ft_atol(argv[5]);
 	head->has_died = 0;
 }
 
@@ -51,8 +51,6 @@ void	init_thread(t_head *head)
 	t_philosopher *curr;
 
 	i = 0;
-	// printf("Number of thread to create : (%d)", head->number_of_philosophers);
-
 	while (i < head->number_of_philosophers)
 	{
 		curr = head->philo + i;
@@ -71,15 +69,29 @@ void	init_mutex(t_head *head)
 {
 	int	i;
 
+
+
 	i = 0;
 	head->philo->fork_l = malloc(head->number_of_philosophers * sizeof(pthread_mutex_t));
 	if (!head->philo->fork_l)
-	{
 		printf("L'allocation mémoire pour le tableau 'forks' a échoué\n");
-	}
 	while (i < head->number_of_philosophers)
 	{
 		if (pthread_mutex_init(&head->philo->fork_l[i], NULL) != 0)
+		{
+			printf("Erreur lors de l'initialisation du mutex pour la fourchette %d\n", i);
+		}
+		i++;
+	}
+
+	
+	i = 0;
+	head->philo->fork_r = malloc(head->number_of_philosophers * sizeof(pthread_mutex_t));
+	if (!head->philo->fork_r)
+		printf("L'allocation mémoire pour le tableau 'forks' a échoué\n");
+	while (i < head->number_of_philosophers)	
+	{
+		if (pthread_mutex_init(&head->philo->fork_r[i], NULL) != 0)
 		{
 			printf("Erreur lors de l'initialisation du mutex pour la fourchette %d\n", i);
 		}

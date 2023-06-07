@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:14:59 by joterret          #+#    #+#             */
-/*   Updated: 2023/05/28 04:20:07 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:32:03 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	ft_isdigit(int c)
 		return (1);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	int	i;
-	int	res;
-	int	sign;
+	long	i;
+	long	res;
+	long	sign;
 
 	i = 0;
 	res = 0;
