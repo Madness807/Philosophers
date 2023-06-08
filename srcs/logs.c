@@ -6,14 +6,18 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 04:08:35 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/07 04:11:54 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:45:15 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
+...	log()
+{
+	printf(" Philo (%i) Has Eated (%i) for max (%i) \n", curr->id_philo, curr->meal_count, head->number_of_times_each_philosopher_must_eat);
+	
 
-
+}
 
 
 

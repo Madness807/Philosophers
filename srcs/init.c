@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/07 04:34:16 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:40:33 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void	init_mutex(t_head *head)
 {
 	int	i;
 
-
-
 	i = 0;
 	head->philo->fork_l = malloc(head->number_of_philosophers * sizeof(pthread_mutex_t));
 	if (!head->philo->fork_l)
@@ -83,8 +81,6 @@ void	init_mutex(t_head *head)
 		}
 		i++;
 	}
-
-	
 	i = 0;
 	head->philo->fork_r = malloc(head->number_of_philosophers * sizeof(pthread_mutex_t));
 	if (!head->philo->fork_r)
