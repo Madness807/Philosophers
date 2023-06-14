@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/07 04:40:33 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/14 02:42:31 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ void	init_philo(t_head *head)
 		head->philo[i].time_awake = 0;
 		head->philo[i].meal_count = 0;
 		head->philo[i].time_since_last_meal = 0;
-		head->philo[i].head = head;
-		head->philo[i].thread = malloc(sizeof(*(head->philo[i].thread)));
-		if (!head->philo[i].thread)
-			printf("ZOOO");
+		head->philo[i].head = &head;
+		head->philo[i].fork_l = i;
+		head->philo[i].fork_r = (i + 1);
+		if (i + 1 == head->number_of_philosophers)
+			head->philo[i].fork_r = 0;
+		//head->philo[i].thread = malloc(sizeof(*(head->philo[i].thread)));
+		// if (!head->philo[i].thread)
+		// 	printf("ZOOO");
 		i++;
 	}
 }
@@ -48,49 +52,35 @@ void	init_thread(t_head *head)
 {
 	int	i;
 
-	t_philosopher *curr;
+	//t_philosopher *curr;
 
+	grab_time_before(head);
 	i = 0;
 	while (i < head->number_of_philosophers)
 	{
-		curr = head->philo + i;
+		//curr = head->philo + i;
+		head->n_thread = i;
 		// if (pthread_create(head->philo[i].thread, 0, &routine, ((void *) head->philo + i)))
 		// {
 		// 	printf("Erreur lors de la création du thread pour le philosophe %d\n", i);
 		// 	exit(0);
 		// }
-		pthread_create(head->philo[i].thread, 0, &routine, ((void *) curr));
-		usleep(15);
+		pthread_create(&head->philo[i].thread, 0, &routine, ((void *) head));
+		usleep(150);
 		i++;
 	}
 }
 
-void	init_mutex(t_head *head)
+void	init_mutex_v2(t_head *head)
 {
-	int	i;
-
+	int i;
+	
 	i = 0;
-	head->philo->fork_l = malloc(head->number_of_philosophers * sizeof(pthread_mutex_t));
-	if (!head->philo->fork_l)
-		printf("L'allocation mémoire pour le tableau 'forks' a échoué\n");
+	head->fork = malloc(head->number_of_philosophers * sizeof(pthread_mutex_t));
 	while (i < head->number_of_philosophers)
 	{
-		if (pthread_mutex_init(&head->philo->fork_l[i], NULL) != 0)
-		{
-			printf("Erreur lors de l'initialisation du mutex pour la fourchette %d\n", i);
-		}
-		i++;
-	}
-	i = 0;
-	head->philo->fork_r = malloc(head->number_of_philosophers * sizeof(pthread_mutex_t));
-	if (!head->philo->fork_r)
-		printf("L'allocation mémoire pour le tableau 'forks' a échoué\n");
-	while (i < head->number_of_philosophers)	
-	{
-		if (pthread_mutex_init(&head->philo->fork_r[i], NULL) != 0)
-		{
-			printf("Erreur lors de l'initialisation du mutex pour la fourchette %d\n", i);
-		}
+		pthread_mutex_init(&head->fork[i], NULL);
 		i++;
 	}
 }
+

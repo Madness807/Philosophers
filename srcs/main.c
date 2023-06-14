@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:32 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/07 04:43:38 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/14 02:07:49 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,4 @@ int main(int argc, char **argv)
 	init_thread(&head);
 	join_thread(&head);
 
-	// NOTE - test de la partie qui gere le temp
-	// grab_time_before(&head);
-	// usleep(1000);
-	// grab_time_after(&head);
-	// unsigned long long resultat;
-	// resultat = grab_time_dif(&head);
-	// printf("je print la dif %llu\n", resultat);
-	// if (resultat > 10)
-	// 	printf("le temp est trop grand");	
 }

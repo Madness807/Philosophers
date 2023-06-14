@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/07 04:37:38 by joterret         ###   ########.fr       */
+/*   Updated: 2023/06/14 02:39:35 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct s_philosopher
 	long			time_awake;
 	long			time_since_last_meal;
 	void			*head;
-	pthread_mutex_t	*fork_l;
-	pthread_mutex_t	*fork_r;
-	pthread_t		*thread;
+	int				fork_l;
+	int				fork_r;
+	pthread_t		thread;
 
 }t_philosopher;
 
@@ -56,8 +56,10 @@ typedef struct s_head
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
+	pthread_mutex_t	*fork;
 	t_philosopher	*philo;
 	t_time			time;
+	int				n_thread;
 	
 }t_head;
 
