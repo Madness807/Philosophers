@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/14 02:39:35 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/09/18 20:53:59 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
+
+typedef struct s_head t_head;
+
 typedef struct s_philosopher
 {
 	int				id_philo;
 	int				meal_count;
 	long			time_awake;
 	long			time_since_last_meal;
-	void			*head;
+	t_head			*head;
 	int				fork_l;
 	int				fork_r;
 	pthread_t		thread;
 
 }t_philosopher;
-
-typedef struct s_time
-{
-	unsigned long long before_ms;
-	unsigned long long after_ms;
-	
-}t_time;
 
 typedef struct s_head
 {
@@ -58,8 +54,9 @@ typedef struct s_head
 	long			time_to_sleep;
 	pthread_mutex_t	*fork;
 	t_philosopher	*philo;
-	t_time			time;
+	long long int	start_time;
 	int				n_thread;
+	pthread_mutex_t	printing;
 	
 }t_head;
 
@@ -77,6 +74,7 @@ void				init_mutex(t_head *head);
 void				ft_eat(t_philosopher *head);
 void				ft_sleep(t_philosopher *head);
 void				ft_think(t_philosopher *head);
+void				ft_taken_fork(t_philosopher *head);
 void				ft_is_dead(t_philosopher *head);
 
 //					time function

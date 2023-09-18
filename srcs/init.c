@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/18 16:40:22 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/09/18 20:58:24 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_philo(t_head *head)
 		head->philo[i].time_awake = 0;
 		head->philo[i].meal_count = 0;
 		head->philo[i].time_since_last_meal = 0;
-		head->philo[i].head = &head;
+		head->philo[i].head = head;
 		head->philo[i].fork_l = i;
 		head->philo[i].fork_r = (i + 1);
 		if (i + 1 == head->number_of_philosophers)
@@ -55,7 +55,6 @@ void	init_thread(t_head *head)
 	{
 		head->n_thread = i;
 		pthread_create(&head->philo[i].thread, 0, &routine, ((void *) head));
-		usleep(150);
 		i++;
 	}
 }
@@ -71,5 +70,6 @@ void	init_mutex(t_head *head)
 		pthread_mutex_init(&head->fork[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&head->printing, NULL);
 }
 
