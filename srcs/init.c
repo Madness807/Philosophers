@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/14 02:42:31 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/09/18 16:40:22 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ void	init_philo(t_head *head)
 		head->philo[i].fork_r = (i + 1);
 		if (i + 1 == head->number_of_philosophers)
 			head->philo[i].fork_r = 0;
-		//head->philo[i].thread = malloc(sizeof(*(head->philo[i].thread)));
-		// if (!head->philo[i].thread)
-		// 	printf("ZOOO");
 		i++;
 	}
 }
@@ -52,26 +49,18 @@ void	init_thread(t_head *head)
 {
 	int	i;
 
-	//t_philosopher *curr;
-
 	grab_time_before(head);
 	i = 0;
 	while (i < head->number_of_philosophers)
 	{
-		//curr = head->philo + i;
 		head->n_thread = i;
-		// if (pthread_create(head->philo[i].thread, 0, &routine, ((void *) head->philo + i)))
-		// {
-		// 	printf("Erreur lors de la création du thread pour le philosophe %d\n", i);
-		// 	exit(0);
-		// }
 		pthread_create(&head->philo[i].thread, 0, &routine, ((void *) head));
 		usleep(150);
 		i++;
 	}
 }
 
-void	init_mutex_v2(t_head *head)
+void	init_mutex(t_head *head)
 {
 	int i;
 	

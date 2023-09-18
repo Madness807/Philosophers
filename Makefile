@@ -10,7 +10,8 @@ SRC				=		srcs/main.c\
 						utils/utils.c\
 						srcs/status.c\
 						srcs/free_exit.c\
-						srcs/time.c\
+						srcs/time/time.c\
+						srcs/arbitre.c\
 
 OBJS			=		$(addprefix obj/, $(SRC:.c=.o))
 

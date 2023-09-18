@@ -21,3 +21,7 @@ D'accord, je vais me baser sur nos dernières discussions pour t'aider à compl�
 6. N'oublie pas de libérer les ressources (par exemple, les mutex) et de rejoindre les threads une fois que tu as terminé l'exécution.
 
 C'est une approche générale pour l'implémentation du projet. Assure-toi d'adapter et de personnaliser le code en fonction de tes besoins spécifiques. Si tu rencontres des problèmes spécifiques ou si tu as des questions supplémentaires, n'hésite pas à me demander.
+
+1 - [] declarer et initialiser les mutex pour chaque fourchette (un tableau de mutex et un mutex pour chaque fourchette)
+2 - [] initialisation de chaque philo 
+3 - [] 
