@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/21 17:33:10 by joterret         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:48:42 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_head
 ////////////////////////////////////////////////////////////////////////////////
 
 //					initialisation
-void				init_head(t_head *input_args, char **argv);
+void				init_head(t_head *head, char **argv, int argc);
 void				init_philo(t_head *head);
 void				init_thread(t_head *head);
 void				init_mutex(t_head *head);

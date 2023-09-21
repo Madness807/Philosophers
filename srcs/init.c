@@ -6,19 +6,22 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/21 17:27:33 by joterret         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:50:36 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	init_head(t_head *head, char **argv)
+void	init_head(t_head *head, char **argv, int argc)
 {
 	head->number_of_philosophers = ft_atol(argv[1]);
 	head->time_to_die = ft_atol(argv[2]);
 	head->time_to_eat = ft_atol(argv[3]);
 	head->time_to_sleep = ft_atol(argv[4]);
-	head->nbr_times_philosopher_must_eat = ft_atol(argv[5]);
+	if (argc == 6)
+		head->nbr_times_philosopher_must_eat = ft_atol(argv[5]);
+	else
+		head->nbr_times_philosopher_must_eat = 0;
 	head->has_died = 0;
 }
 

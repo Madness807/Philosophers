@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 04:06:14 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/20 00:14:11 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/09/21 18:23:54 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,21 @@ void	*routine(void *arg)
 	{
 		if (head->philo[i].meal_count >= head->nbr_times_philosopher_must_eat)
 			break ;
-		pthread_mutex_lock(&head->fork[head->philo[i].fork_l]);
-		ft_taken_fork(&head->philo[i]);
-		pthread_mutex_lock(&head->fork[head->philo[i].fork_r]);
-		ft_taken_fork(&head->philo[i]);
+		if (i % 2 == 0)
+		{
+			pthread_mutex_lock(&head->fork[head->philo[i].fork_l]);
+			ft_taken_fork(&head->philo[i]);
+			pthread_mutex_lock(&head->fork[head->philo[i].fork_r]);
+			ft_taken_fork(&head->philo[i]);
+		}
+		else
+		{
+			usleep(500);
+			pthread_mutex_lock(&head->fork[head->philo[i].fork_r]);
+			ft_taken_fork(&head->philo[i]);
+			pthread_mutex_lock(&head->fork[head->philo[i].fork_l]);
+			ft_taken_fork(&head->philo[i]);
+		}
 		ft_eat(&head->philo[i]);
 		exec_action(head->time_to_eat);
 		pthread_mutex_unlock(&head->fork[head->philo[i].fork_r]);
