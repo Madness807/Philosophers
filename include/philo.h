@@ -6,7 +6,7 @@
 /*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/18 20:53:59 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/09/19 20:53:54 by joterrett        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ typedef struct s_philosopher
 typedef struct s_head
 {
 	int				number_of_philosophers;
-	int				number_of_times_each_philosopher_must_eat;
+	int				nbr_times_philosopher_must_eat;
 	int				has_died;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
-	pthread_mutex_t	*fork;
-	t_philosopher	*philo;
 	long long int	start_time;
 	int				n_thread;
+	t_philosopher	*philo;
+	pthread_mutex_t	*fork;
 	pthread_mutex_t	printing;
-	
+	pthread_mutex_t	index;
 }t_head;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -81,6 +81,7 @@ void				ft_is_dead(t_philosopher *head);
 void				grab_time_before(t_head *head);
 void				grab_time_after(t_head *head);
 unsigned long long	grab_time_dif(t_head *head);
+void				exec_action(long long time);
 
 //					utils function 
 long				ft_atol(const char *nptr);
