@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:14:59 by joterret          #+#    #+#             */
-/*   Updated: 2023/06/07 04:32:03 by joterret         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:31:47 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	check_is_digit(char *num)
 		if (ft_isdigit(num[i]) == 1)
 			i++;
 		else
+		{
 			printf("ERROR: not a digit\n");
+			exit (1);
+		}
 	}
 	return ;
 }

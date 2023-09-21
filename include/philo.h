@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/19 20:53:54 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/09/21 17:33:10 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef struct s_head t_head;
+typedef struct s_head	t_head;
 
 typedef struct s_philosopher
 {

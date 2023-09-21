@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   status.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 03:08:43 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/19 21:08:24 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/09/21 17:25:48 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,3 @@ void	ft_is_dead(t_philosopher *head)
 	pthread_mutex_lock(&current->printing);
 	printf("\033[0;46m%i\t🪦 dead\t\t\033[0m\n", head->id_philo);
 }
-
