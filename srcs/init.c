@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/21 17:50:36 by joterret         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:09:32 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	init_thread(t_head *head)
 {
 	int	i;
 
-	grab_time_before(head);
+	grab_time_start(head);
 	i = 0;
 	while (i < head->number_of_philosophers)
 	{
@@ -63,6 +63,7 @@ void	init_thread(t_head *head)
 		usleep(50);
 		i++;
 	}
+	//pthread_create(&head->watcher, 0, &watcher, ((void *) head));
 }
 
 void	init_mutex(t_head *head)

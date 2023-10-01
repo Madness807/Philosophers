@@ -6,13 +6,23 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:41:22 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/21 17:25:39 by joterret         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:18:41 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	grab_time_before(t_head *head)
+long	grab_time_now(void)
+{
+	struct timeval	time;
+	long			time_now;
+
+	gettimeofday(&time, NULL);
+	time_now = (time.tv_sec * 1000 + time.tv_usec / 1000);
+	return (time_now);
+}
+
+void	grab_time_start(t_head *head)
 {
 	struct timeval	start;
 

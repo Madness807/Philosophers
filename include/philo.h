@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/21 17:48:42 by joterret         ###   ########.fr       */
+/*   Updated: 2023/09/30 16:13:37 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_head
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	printing;
 	pthread_mutex_t	index;
+	pthread_t		watcher;
 }t_head;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,10 +79,14 @@ void				ft_taken_fork(t_philosopher *head);
 void				ft_is_dead(t_philosopher *head);
 
 //					time function
-void				grab_time_before(t_head *head);
+long				grab_time_now(void);
+void				grab_time_start(t_head *head);
 void				grab_time_after(t_head *head);
 unsigned long long	grab_time_dif(t_head *head);
 void				exec_action(long long time);
+
+//					watcher
+void				*watcher(void *head);
 
 //					utils function 
 long				ft_atol(const char *nptr);
