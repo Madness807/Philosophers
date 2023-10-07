@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joterrett <joterrett@student.42.fr>        +#+  +:+       +#+        */
+/*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:39:22 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/19 20:56:48 by joterrett        ###   ########.fr       */
+/*   Updated: 2023/10/07 21:37:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // }
 
 // //TODO - détruire les mutex 
-
+/*
 void	join_thread(t_head *head)
 {
 	int			i;
@@ -34,3 +34,4 @@ void	join_thread(t_head *head)
 		i++;
 	}
 }
+*/

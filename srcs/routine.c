@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 04:06:14 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/30 19:19:46 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:57:37 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@ void	*routine(void *arg)
 {
 	t_head	*head;
 	int		i;
+	int		nbr_m_eat;
 
 	head = arg;
+	nbr_m_eat = head->nbr_times_philosopher_must_eat;
 	pthread_mutex_lock(&(head->index));
 	i = head->n_thread;
 	pthread_mutex_unlock(&(head->index));
 	while (1)
 	{
-		if (head->philo[i].meal_count >= head->nbr_times_philosopher_must_eat)
+		if (nbr_m_eat != -1 && head->philo[i].meal_count >= nbr_m_eat)
+		{
 			break ;
+		}
 		if (i % 2 == 0)
 		{
 			pthread_mutex_lock(&head->fork[head->philo[i].fork_l]);
@@ -35,7 +39,7 @@ void	*routine(void *arg)
 		}
 		else
 		{
-			usleep(500);
+			usleep(50);
 			pthread_mutex_lock(&head->fork[head->philo[i].fork_r]);
 			ft_taken_fork(&head->philo[i]);
 			pthread_mutex_lock(&head->fork[head->philo[i].fork_l]);

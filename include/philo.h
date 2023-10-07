@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/30 16:13:37 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/08 00:31:10 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,23 @@
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
 
-typedef struct s_head	t_head;
+typedef struct s_head
+{
+	int						number_of_philosophers;
+	int						nbr_times_philosopher_must_eat;
+	int						has_died;
+	long					time_to_die;
+	long					time_to_eat;
+	long					time_to_sleep;
+	long long int			start_time;
+	int						n_thread;
+	struct s_philosopher	*philo;
+	pthread_mutex_t			*fork;
+	pthread_mutex_t			*print;
+	pthread_mutex_t			printing;
+	pthread_mutex_t			index;
+	pthread_t				watcher;
+}t_head;
 
 typedef struct s_philosopher
 {
@@ -43,23 +59,6 @@ typedef struct s_philosopher
 	pthread_t		thread;
 
 }t_philosopher;
-
-typedef struct s_head
-{
-	int				number_of_philosophers;
-	int				nbr_times_philosopher_must_eat;
-	int				has_died;
-	long			time_to_die;
-	long			time_to_eat;
-	long			time_to_sleep;
-	long long int	start_time;
-	int				n_thread;
-	t_philosopher	*philo;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	printing;
-	pthread_mutex_t	index;
-	pthread_t		watcher;
-}t_head;
 
 ////////////////////////////////////////////////////////////////////////////////
 // 							Prototype de fonctions						      //
@@ -98,5 +97,6 @@ void				*routine(void *arg);
 //					exit and free function 
 void				free_philo_tab(t_head *head);
 void				join_thread(t_head *head);
+int					destroy_mutex(t_head *head);
 
 #endif

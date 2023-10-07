@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:14:59 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/21 17:31:47 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:34:04 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_is_digit(char *num)
 	i = 0;
 	while (num[i] != 0)
 	{
-		if (num[i] == '-' && i != 0)
+		if (num[i] == '-' && i != 0 && num[i + 1] != 0)
 			printf("ERROR: not a digit\n");
 		if (num[i] == '-')
 			i++;

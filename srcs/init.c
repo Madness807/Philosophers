@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/30 16:09:32 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:50:53 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,27 @@ void	init_head(t_head *head, char **argv, int argc)
 	if (argc == 6)
 		head->nbr_times_philosopher_must_eat = ft_atol(argv[5]);
 	else
-		head->nbr_times_philosopher_must_eat = 0;
+		head->nbr_times_philosopher_must_eat = -1;
 	head->has_died = 0;
 }
 
 void	init_philo(t_head *head)
-{	
+{
 	int	i;
 
 	i = 0;
 	head->philo = malloc(head->number_of_philosophers * sizeof(t_philosopher));
 	if (!head->philo)
+	{
 		printf("L'allocation memoire du tab philo a echouer");
+		exit (1);
+	}
 	while (i < head->number_of_philosophers)
 	{
 		head->philo[i].id_philo = i;
 		head->philo[i].time_awake = 0;
 		head->philo[i].meal_count = 0;
-		head->philo[i].time_since_last_meal = 0;
+		head->philo[i].time_since_last_meal = grab_time_now();
 		head->philo[i].head = head;
 		head->philo[i].fork_l = i;
 		head->philo[i].fork_r = (i + 1);
@@ -63,7 +66,7 @@ void	init_thread(t_head *head)
 		usleep(50);
 		i++;
 	}
-	//pthread_create(&head->watcher, 0, &watcher, ((void *) head));
+	pthread_create(&head->watcher, 0, &watcher, ((void *) head));
 }
 
 void	init_mutex(t_head *head)

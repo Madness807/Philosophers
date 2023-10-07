@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:41:22 by joterret          #+#    #+#             */
-/*   Updated: 2023/09/30 16:18:41 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:11:00 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	exec_action(long long time)
 	gettimeofday(&t1, NULL);
 	while (delta < time)
 	{
-		usleep(100);
+		usleep(50);
 		gettimeofday(&t2, NULL);
 		delta = find_delta(t1, t2);
 	}
