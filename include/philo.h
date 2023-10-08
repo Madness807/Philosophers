@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/08 00:31:10 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:24:05 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_head
 	pthread_mutex_t			*print;
 	pthread_mutex_t			printing;
 	pthread_mutex_t			index;
+	pthread_mutex_t			dead;
+	pthread_mutex_t			meal;
 	pthread_t				watcher;
 }t_head;
 
@@ -65,7 +67,7 @@ typedef struct s_philosopher
 ////////////////////////////////////////////////////////////////////////////////
 
 //					initialisation
-void				init_head(t_head *head, char **argv, int argc);
+int					init_head(t_head *head, char **argv, int argc);
 void				init_philo(t_head *head);
 void				init_thread(t_head *head);
 void				init_mutex(t_head *head);
@@ -95,7 +97,6 @@ void				check_is_digit(char *num);
 void				*routine(void *arg);
 
 //					exit and free function 
-void				free_philo_tab(t_head *head);
 void				join_thread(t_head *head);
 int					destroy_mutex(t_head *head);
 

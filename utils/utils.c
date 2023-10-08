@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:14:59 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/07 15:34:04 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/08 14:28:02 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ long	ft_atol(const char *nptr)
 	return (sign * res);
 }
 
-//FIXME - la verification de si c est un digit en entrer ou pas ne marche pas
 void	check_is_digit(char *num)
 {
 	int	i;

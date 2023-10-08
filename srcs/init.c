@@ -6,13 +6,13 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/07 22:50:53 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:25:12 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	init_head(t_head *head, char **argv, int argc)
+int	init_head(t_head *head, char **argv, int argc)
 {
 	head->number_of_philosophers = ft_atol(argv[1]);
 	head->time_to_die = ft_atol(argv[2]);
@@ -23,6 +23,7 @@ void	init_head(t_head *head, char **argv, int argc)
 	else
 		head->nbr_times_philosopher_must_eat = -1;
 	head->has_died = 0;
+	return (0);
 }
 
 void	init_philo(t_head *head)
@@ -82,4 +83,6 @@ void	init_mutex(t_head *head)
 	}
 	pthread_mutex_init(&head->printing, NULL);
 	pthread_mutex_init(&head->index, NULL);
+	pthread_mutex_init(&head->dead, NULL);
+	pthread_mutex_init(&head->meal, NULL);
 }
