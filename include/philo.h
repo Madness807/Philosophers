@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/08 21:24:05 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/09 00:51:19 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void				init_thread(t_head *head);
 void				init_mutex(t_head *head);
 
 //					State function
-void				ft_eat(t_philosopher *head);
-void				ft_sleep(t_philosopher *head);
-void				ft_think(t_philosopher *head);
-void				ft_taken_fork(t_philosopher *head);
+int					ft_eat(t_philosopher *head);
+int					ft_sleep(t_philosopher *head);
+int					ft_think(t_philosopher *head);
+int					ft_taken_fork(t_philosopher *head);
 void				ft_is_dead(t_philosopher *head);
 
 //					time function
