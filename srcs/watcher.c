@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 23:41:22 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/08 22:01:00 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:36:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,24 @@ void	*watcher(void *head)
 {
 	t_head	*current;
 	int		i;
-	int		j;
 	int		all_eat;
 
-	j = 0;
 	all_eat = 0;
 	current = head;
 	while (1)
 	{
 		i = 0;
-		if (j == 1 || all_eat == current->number_of_philosophers)
+		if (all_eat == current->number_of_philosophers)
 			return (0);
 		while (i < current->number_of_philosophers)
 		{
 			if ((die_timer(head, i)) == 1)
 			{
 				ft_is_dead(&current->philo[i]);
-				j = 1;
+				return (NULL);
 			}
 			pthread_mutex_lock(&current->meal);
-			if (current->philo[i].meal_count == current->nbr_times_philosopher_must_eat)
+			if (current->philo[i].meal_count == current->nbtoeat)
 				all_eat++;
 			pthread_mutex_unlock(&current->meal);
 			i++;

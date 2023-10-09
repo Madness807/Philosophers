@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:14:59 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/08 14:28:02 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:35:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,36 +45,34 @@ long	ft_atol(const char *nptr)
 	return (sign * res);
 }
 
-void	check_is_digit(char *num)
+int	check_is_digit(char *num)
 {
 	int	i;
 
 	i = 0;
 	while (num[i] != 0)
 	{
-		if (num[i] == '-' && i != 0 && num[i + 1] != 0)
-			printf("ERROR: not a digit\n");
-		if (num[i] == '-')
-			i++;
 		if (ft_isdigit(num[i]) == 1)
 			i++;
 		else
-		{
-			printf("ERROR: not a digit\n");
-			exit (1);
-		}
+			return (1);
 	}
-	return ;
+	return (0);
 }
 
-void	check_if_args_is_digit(char **argv)
+int	check_if_args_is_digit(char **argv)
 {
 	int	i;
 
 	i = 1;
 	while (argv[i] != 0)
 	{
-		check_is_digit(argv[i]);
+		if (check_is_digit(argv[i]) == 1)
+		{
+			printf(SYNTAX_ERREUR);
+			return (1);
+		}
 		i++;
 	}
+	return (0);
 }

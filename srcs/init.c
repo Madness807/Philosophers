@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 21:49:28 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/08 21:25:12 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:36:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	init_head(t_head *head, char **argv, int argc)
 	head->time_to_eat = ft_atol(argv[3]);
 	head->time_to_sleep = ft_atol(argv[4]);
 	if (argc == 6)
-		head->nbr_times_philosopher_must_eat = ft_atol(argv[5]);
+		head->nbtoeat = ft_atol(argv[5]);
 	else
-		head->nbr_times_philosopher_must_eat = -1;
+		head->nbtoeat = -1;
 	head->has_died = 0;
 	return (0);
 }

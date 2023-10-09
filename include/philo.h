@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/09 00:51:19 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:36:20 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,21 @@
 # include <sys/time.h>
 
 ////////////////////////////////////////////////////////////////////////////////
+//									define									  //
+////////////////////////////////////////////////////////////////////////////////
+
+# define TOO_MANY_ARGS "ERR_INPUT: TOO MANY ARGUMENTS\n"
+# define NOT_ENOUG_ARGS "ERR_INPUT: NOT ENOUG ARGUMENTS\n"
+# define SYNTAX_ERREUR "ERR_INPUT: IS NOT A DIGIT\n"
+
+////////////////////////////////////////////////////////////////////////////////
 // 									structs								      //
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef struct s_head
 {
 	int						number_of_philosophers;
-	int						nbr_times_philosopher_must_eat;
+	int						nbtoeat;
 	int						has_died;
 	long					time_to_die;
 	long					time_to_eat;
@@ -66,6 +74,9 @@ typedef struct s_philosopher
 // 							Prototype de fonctions						      //
 ////////////////////////////////////////////////////////////////////////////////
 
+//					input_checker
+int					input_check(int argc);
+
 //					initialisation
 int					init_head(t_head *head, char **argv, int argc);
 void				init_philo(t_head *head);
@@ -92,8 +103,8 @@ void				*watcher(void *head);
 //					utils function 
 long				ft_atol(const char *nptr);
 int					ft_isdigit(int c);
-void				check_if_args_is_digit(char **argv);
-void				check_is_digit(char *num);
+int					check_if_args_is_digit(char **argv);
+int					check_is_digit(char *num);
 void				*routine(void *arg);
 
 //					exit and free function 
