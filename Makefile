@@ -48,7 +48,7 @@ MSHELL			=		echo "$(GREEN) \t     __  ______    ____  _   __________________\n\
 
 GCC				=		gcc
 CFLAGS			=		-Wall -Wextra -Werror 
-L				=		$(CFLAGS)  -fsanitize=thread -g3
+L				=		$(CFLAGS)  -fsanitize=thread -fsanitize=address -g3
 RM				=		rm -f
 
 #***** Compilation *****#

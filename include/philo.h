@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:44:37 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/09 17:36:20 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:54:12 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_philosopher
 
 //					input_checker
 int					input_check(int argc);
+int					one_philo_case(char **argv);
 
 //					initialisation
 int					init_head(t_head *head, char **argv, int argc);
@@ -110,5 +111,6 @@ void				*routine(void *arg);
 //					exit and free function 
 void				join_thread(t_head *head);
 int					destroy_mutex(t_head *head);
+void				free_malloc(t_head *head);
 
 #endif

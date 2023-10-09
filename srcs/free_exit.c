@@ -6,7 +6,7 @@
 /*   By: joterret <joterret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:39:22 by joterret          #+#    #+#             */
-/*   Updated: 2023/10/08 14:20:21 by joterret         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:19:17 by joterret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ int	destroy_mutex(t_head *head)
 	}
 	pthread_mutex_destroy(&head->printing);
 	pthread_mutex_destroy(&head->index);
+	pthread_mutex_init(&head->dead, NULL);
+	pthread_mutex_init(&head->meal, NULL);
 	return (0);
+}
+
+void	free_malloc(t_head *head)
+{
+	free(head->philo);
+	free(head->fork);
 }
